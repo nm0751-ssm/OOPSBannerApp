@@ -1,41 +1,45 @@
 /**
- * OOPS Banner App - Use Case 3: String.join()
+ * OOPS Banner App - Use Case 4: Array & Loops
  * 
- * This class demonstrates the OOPS Banner App using String.join() method.
- * UC3 improves upon UC2 by using String.join() for better memory efficiency.
+ * This class demonstrates the OOPS Banner App using arrays and loops.
+ * UC4 improves upon UC3 by storing banner lines in a String array and
+ * using a loop to print them instead of multiple individual print statements.
  * 
  * Key Concepts:
- * - String.join() method for memory-efficient string concatenation
- * - Reduced intermediate String objects in memory
- * - Better performance for multi-part string construction
+ * - String array for storing banner lines
+ * - Enhanced for-loop for clean output traversal
+ * - Better modularity and reusability
+ * - Centralized data structure for banner patterns
  * 
- * Improvement: Reduces memory footprint by avoiding intermediate objects
+ * Improvement: Better modularity through arrays and loops
  * 
  * @author Siva Sidvi Memidala
- * @version 3.0
+ * @version 4.0
  */
 public class OOPSBannerApp {
     
     /**
      * Main method - Entry point of the application
-     * Displays the "OOPS" banner using String.join() method.
+     * Displays the "OOPS" banner using arrays and enhanced for-loop.
      * 
      * @param args Command line arguments (not used in this version)
      */
     public static void main(String[] args) {
-        // Line 1
-        System.out.println(String.join("  ", "O   O", "O   O", "P P P", "S S S"));
-        // Line 2
-        System.out.println(String.join("  ", "O   O", "O   O", "P   P", "S"));
-        // Line 3
-        System.out.println(String.join("  ", "O   O", "O   O", "P P P", "S"));
-        // Line 4
-        System.out.println(String.join("  ", "O   O", "O   O", "P", "S"));
-        // Line 5
-        System.out.println(String.join("  ", "O   O", "O   O", "P", "S   S"));
-        // Line 6
-        System.out.println(String.join("  ", "O   O", "O   O", "P", "S"));
-        // Line 7
-        System.out.println(String.join("  ", "O O", "O O", "P", "S S S"));
+        // Array to store banner lines
+        String[] bannerLines = new String[7];
+        
+        // Populate the array with banner lines
+        bannerLines[0] = String.join("  ", "O   O", "O   O", "P P P", "S S S");
+        bannerLines[1] = String.join("  ", "O   O", "O   O", "P   P", "S");
+        bannerLines[2] = String.join("  ", "O   O", "O   O", "P P P", "S");
+        bannerLines[3] = String.join("  ", "O   O", "O   O", "P", "S");
+        bannerLines[4] = String.join("  ", "O   O", "O   O", "P", "S   S");
+        bannerLines[5] = String.join("  ", "O   O", "O   O", "P", "S");
+        bannerLines[6] = String.join("  ", "O O", "O O", "P", "S S S");
+        
+        // Print banner using enhanced for-loop
+        for (String line : bannerLines) {
+            System.out.println(line);
+        }
     }
 }
