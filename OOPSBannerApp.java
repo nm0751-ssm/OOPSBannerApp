@@ -1,21 +1,25 @@
 /**
- * OOPS Banner App - Use Case 7: Character Pattern Class
+ * OOPS Banner App - Use Case 8: HashMap & Render
  * 
- * This class demonstrates the OOPS Banner App using a static inner class
- * to encapsulate character patterns. UC7 transitions from procedural static
- * methods to an Object-Oriented approach with dedicated data structures.
+ * This class demonstrates the OOPS Banner App using HashMap for pattern storage
+ * and retrieval. UC8 is the final use case that combines all concepts from
+ * previous iterations into a highly maintainable and scalable solution.
  * 
  * Key Concepts:
- * - Static inner class for encapsulating character data
- * - Object-oriented design for pattern management
- * - Single Responsibility Principle
- * - Improved scalability and maintainability
+ * - HashMap for efficient pattern lookup and management
+ * - Centralized pattern storage accessible by character
+ * - Separation of pattern storage and display logic
+ * - Advanced OOP principles (encapsulation, abstraction)
+ * - Nested loops for rendering assembled banner
  * 
- * Improvement: Better OOP design using dedicated classes for data management
+ * Improvement: Most efficient and scalable approach using HashMap
  * 
  * @author Siva Sidvi Memidala
- * @version 7.0
+ * @version 8.0
  */
+import java.util.HashMap;
+import java.util.Map;
+
 public class OOPSBannerApp {
     
     /**
@@ -57,55 +61,71 @@ public class OOPSBannerApp {
     }
     
     /**
-     * Initializes character patterns for the letters O, O, P, S
-     * @return array of CharacterPatternMap objects
+     * Initializes the character pattern map using HashMap
+     * @return HashMap with character keys and CharacterPatternMap values
      */
-    private static CharacterPatternMap[] initializePatterns() {
-        CharacterPatternMap[] maps = new CharacterPatternMap[4];
+    private static Map<Character, CharacterPatternMap> initializePatternMap() {
+        Map<Character, CharacterPatternMap> patternMap = new HashMap<>();
         
-        // First O pattern
-        maps[0] = new CharacterPatternMap('O', new String[]{
+        // O pattern
+        patternMap.put('O', new CharacterPatternMap('O', new String[]{
             "O   O", "O   O", "O   O", "O   O", "O   O", "O   O", "O O"
-        });
-        
-        // Second O pattern
-        maps[1] = new CharacterPatternMap('O', new String[]{
-            "O   O", "O   O", "O   O", "O   O", "O   O", "O   O", "O O"
-        });
+        }));
         
         // P pattern
-        maps[2] = new CharacterPatternMap('P', new String[]{
+        patternMap.put('P', new CharacterPatternMap('P', new String[]{
             "P P P", "P   P", "P P P", "P", "P", "P", "P"
-        });
+        }));
         
         // S pattern
-        maps[3] = new CharacterPatternMap('S', new String[]{
+        patternMap.put('S', new CharacterPatternMap('S', new String[]{
             "S S S", "S", "S", "S", "S   S", "S", "S S S"
-        });
+        }));
         
-        return maps;
+        return patternMap;
+    }
+    
+    /**
+     * Renders the banner using character sequence from a word
+     * @param word the word to display (e.g., "OOPS")
+     * @param patternMap the map containing character patterns
+     */
+    private static void renderBanner(String word, Map<Character, CharacterPatternMap> patternMap) {
+        // Render each line of the banner
+        for (int line = 0; line < 7; line++) {
+            StringBuilder bannerLine = new StringBuilder();
+            
+            // For each character in the word
+            for (int charIndex = 0; charIndex < word.length(); charIndex++) {
+                char currentChar = word.charAt(charIndex);
+                
+                // Add separator between characters
+                if (charIndex > 0) {
+                    bannerLine.append("  ");
+                }
+                
+                // Get pattern for current character and line
+                CharacterPatternMap patternObj = patternMap.get(currentChar);
+                if (patternObj != null) {
+                    bannerLine.append(patternObj.getPattern(line));
+                }
+            }
+            
+            System.out.println(bannerLine.toString());
+        }
     }
     
     /**
      * Main method - Entry point of the application
-     * Displays the "OOPS" banner using CharacterPatternMap class.
+     * Displays the "OOPS" banner using HashMap-based pattern management.
      * 
      * @param args Command line arguments (not used in this version)
      */
     public static void main(String[] args) {
-        // Initialize character patterns
-        CharacterPatternMap[] patterns = initializePatterns();
+        // Initialize pattern map
+        Map<Character, CharacterPatternMap> patternMap = initializePatternMap();
         
-        // Build and display the banner
-        for (int line = 0; line < 7; line++) {
-            StringBuilder bannerLine = new StringBuilder();
-            for (int i = 0; i < patterns.length; i++) {
-                if (i > 0) {
-                    bannerLine.append("  ");
-                }
-                bannerLine.append(patterns[i].getPattern(line));
-            }
-            System.out.println(bannerLine.toString());
-        }
+        // Render the banner
+        renderBanner("OOPS", patternMap);
     }
 }
