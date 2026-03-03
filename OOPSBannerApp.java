@@ -1,41 +1,40 @@
 /**
- * OOPS Banner App - Use Case 4: Array & Loops
+ * OOPS Banner App - Use Case 5: Array Initialization
  * 
- * This class demonstrates the OOPS Banner App using arrays and loops.
- * UC4 improves upon UC3 by storing banner lines in a String array and
- * using a loop to print them instead of multiple individual print statements.
+ * This class demonstrates the OOPS Banner App using inline array initialization.
+ * UC5 improves upon UC4 by combining array declaration and initialization
+ * with String.join() method calls in a single statement.
  * 
  * Key Concepts:
- * - String array for storing banner lines
- * - Enhanced for-loop for clean output traversal
- * - Better modularity and reusability
- * - Centralized data structure for banner patterns
+ * - Inline array initialization with values
+ * - String.join() calls directly in array initializer
+ * - More concise and readable code
+ * - Eliminates need for separate population statements
  * 
- * Improvement: Better modularity through arrays and loops
+ * Improvement: More compact and readable code through inline initialization
  * 
  * @author Siva Sidvi Memidala
- * @version 4.0
+ * @version 5.0
  */
 public class OOPSBannerApp {
     
     /**
      * Main method - Entry point of the application
-     * Displays the "OOPS" banner using arrays and enhanced for-loop.
+     * Displays the "OOPS" banner using inline array initialization.
      * 
      * @param args Command line arguments (not used in this version)
      */
     public static void main(String[] args) {
-        // Array to store banner lines
-        String[] bannerLines = new String[7];
-        
-        // Populate the array with banner lines
-        bannerLines[0] = String.join("  ", "O   O", "O   O", "P P P", "S S S");
-        bannerLines[1] = String.join("  ", "O   O", "O   O", "P   P", "S");
-        bannerLines[2] = String.join("  ", "O   O", "O   O", "P P P", "S");
-        bannerLines[3] = String.join("  ", "O   O", "O   O", "P", "S");
-        bannerLines[4] = String.join("  ", "O   O", "O   O", "P", "S   S");
-        bannerLines[5] = String.join("  ", "O   O", "O   O", "P", "S");
-        bannerLines[6] = String.join("  ", "O O", "O O", "P", "S S S");
+        // Array with inline initialization using String.join() calls
+        String[] bannerLines = {
+            String.join("  ", "O   O", "O   O", "P P P", "S S S"),
+            String.join("  ", "O   O", "O   O", "P   P", "S"),
+            String.join("  ", "O   O", "O   O", "P P P", "S"),
+            String.join("  ", "O   O", "O   O", "P", "S"),
+            String.join("  ", "O   O", "O   O", "P", "S   S"),
+            String.join("  ", "O   O", "O   O", "P", "S"),
+            String.join("  ", "O O", "O O", "P", "S S S")
+        };
         
         // Print banner using enhanced for-loop
         for (String line : bannerLines) {
